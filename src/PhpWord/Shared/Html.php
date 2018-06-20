@@ -286,21 +286,9 @@ class Html
     private static function parseTable($node, $element, &$styles)
     {
         $elementStyles = self::parseInlineStyle($node, $styles['table']);
-
-        $newElement = $element->addTable($elementStyles);
-
-        // $attributes = $node->attributes;
-        // if ($attributes->getNamedItem('width') !== null) {
-        // $newElement->setWidth($attributes->getNamedItem('width')->value);
-        // }
-
-        // if ($attributes->getNamedItem('height') !== null) {
-        // $newElement->setHeight($attributes->getNamedItem('height')->value);
-        // }
-        // if ($attributes->getNamedItem('width') !== null) {
-        // $newElement=$element->addCell($width=$attributes->getNamedItem('width')->value);
-        // }
-
+        $id = 'table_'.uniqid();
+        $element->getPhpWord()->addTableStyle($id, $elementStyles);
+        $newElement = $element->addTable($id);
         return $newElement;
     }
 
